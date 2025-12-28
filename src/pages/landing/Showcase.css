@@ -1,0 +1,99 @@
+.company-policy {
+  padding: 80px 5%;
+  background: #000;
+  color: #fff;
+}
+
+.company-policy__title {
+  font-size: 3rem;
+  font-weight: 800;
+  text-align: center;
+  margin-bottom: 60px;
+  color: #ffffff;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.company-policy__content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.company-policy__column {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.policy-section {
+  background: rgba(255, 255, 255, 0.02);
+  padding: 30px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.policy-section__title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: #fff;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.policy-section__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.policy-section__list li {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 15px;
+  color: #e0e0e0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  position: relative;
+  padding-left: 20px;
+}
+
+.policy-section__list li::before {
+  content: '•';
+  color: #ffffff;
+  font-weight: bold;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+@media (max-width: 1024px) {
+  .company-policy__content {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  
+  .company-policy__title {
+    font-size: 2.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .company-policy {
+    padding: 60px 5%;
+  }
+  
+  .company-policy__title {
+    font-size: 2rem;
+  }
+  
+  .policy-section {
+    padding: 20px;
+  }
+  
+  .policy-section__title {
+    font-size: 1.2rem;
+  }
+}
+
+

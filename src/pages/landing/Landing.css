@@ -1,0 +1,25 @@
+.landing-page {
+  background: #000;
+  color: #fff;
+  min-height: 100vh;
+}
+
+.landing-page a { color: #fff; }
+.landing-page .btn { color: #fff; }
+
+/* Ensure sections sit on black not Tailwind bg */
+.landing-page .section,
+.landing-page .hero,
+.landing-page header,
+.landing-page footer {
+  background: transparent;
+  color: inherit;
+}
+
+/* Override Tailwind base bg/text for descendants inside landing */
+.landing-page * {
+  --background: 0 0% 0%;
+  --foreground: 0 0% 100%;
+}
+
+

@@ -1,0 +1,4 @@
+/* Global page-level helpers reused across sections */
+html, body, #root { height: 100%; }
+body { background: var(--secondary); color: var(--primary); }
+

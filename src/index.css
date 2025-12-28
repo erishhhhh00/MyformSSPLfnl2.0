@@ -1,0 +1,601 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    --background: 0 0% 98%;
+    --foreground: 222.2 84% 4.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+
+    --primary: 210 80% 50%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 222.2 84% 4.9%;
+    --input: 0 0% 100%;
+    --ring: 210 80% 50%;
+    
+    --form-border: 222.2 84% 4.9%;
+    --form-header: 0 0% 95%;
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Enhanced Professional Form Styling */
+.form-page-container {
+  min-height: calc(100vh - 200px);
+  display: flex;
+  flex-direction: column;
+}
+
+/* Consistent page dimensions for PDF generation - only when needed */
+@media print {
+  .w-full.max-w-4xl {
+    min-height: 1200px !important;
+    width: 100% !important;
+  }
+}
+
+/* Normal height for screen display - remove blank space */
+.w-full.max-w-4xl {
+  width: 100% !important;
+  min-height: auto !important;
+}
+
+.form-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.form-section {
+  margin-bottom: 2rem;
+}
+
+.form-section h2, .form-section h3, .form-section h4 {
+  line-height: 1.6;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid hsl(var(--border));
+  padding-bottom: 0.5rem;
+}
+
+.form-section p {
+  line-height: 1.7;
+  margin-bottom: 0.75rem;
+}
+
+.form-table td, .form-table th {
+  padding: 0.75rem;
+  line-height: 1.5;
+  border: 1px solid hsl(var(--border));
+}
+
+.form-table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.form-input-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-checkbox-group {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+  padding: 0.5rem;
+  border: 1px solid hsl(var(--border));
+  border-radius: 0.25rem;
+}
+
+.form-checkbox-uniform {
+  width: 18px !important;
+  height: 18px !important;
+  min-width: 18px !important;
+  min-height: 18px !important;
+  border: 1px solid hsl(var(--border)) !important;
+}
+
+.form-radio-uniform {
+  width: 16px !important;
+  height: 16px !important;
+  min-width: 16px !important;
+  min-height: 16px !important;
+  border: 1px solid hsl(var(--border)) !important;
+}
+
+.form-signatures {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 2px solid hsl(var(--border));
+}
+
+.form-footer {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 2px solid hsl(var(--border));
+}
+
+/* Professional Input Styling */
+.form-professional-input {
+  border: 1px solid hsl(var(--form-border)) !important;
+  border-radius: 0.25rem !important;
+  padding: 0.5rem !important;
+  transition: border-color 0.2s ease !important;
+}
+
+.form-professional-input:focus {
+  border-color: hsl(var(--primary)) !important;
+  box-shadow: 0 0 0 2px hsl(var(--primary) / 0.1) !important;
+}
+
+/* Professional Border Styling for Mobile and Desktop */
+.form-professional-border {
+  border: 1px solid hsl(var(--form-border)) !important;
+  border-radius: 0.25rem !important;
+}
+
+/* Thin professional borders for all form elements */
+.form-thin-border {
+  border: 1px solid hsl(var(--muted-foreground) / 0.3) !important;
+}
+
+/* Enhanced mobile responsiveness */
+@media (max-width: 768px) {
+  .form-professional-input,
+  .form-professional-border,
+  .form-thin-border {
+    border-width: 1px !important;
+    padding: 0.75rem !important;
+    font-size: 0.875rem !important;
+  }
+  
+  /* Ensure proper spacing on mobile */
+  .form-checkbox-group {
+    padding: 0.75rem !important;
+    margin-bottom: 1rem !important;
+  }
+  
+  /* Better alignment for mobile checkboxes */
+  .form-checkbox-uniform {
+    width: 20px !important;
+    height: 20px !important;
+    min-width: 20px !important;
+    min-height: 20px !important;
+  }
+}
+
+/* Professional Box Styling */
+.form-professional-box {
+  border: 1px solid hsl(var(--border));
+  border-radius: 0.25rem;
+  padding: 1rem;
+  margin: 0.5rem 0;
+  background: hsl(var(--card));
+}
+
+/* Grid Alignment */
+.form-grid-container {
+  display: grid;
+  gap: 1rem;
+  align-items: start;
+}
+
+.form-grid-container > * {
+  border: 1px solid hsl(var(--border));
+  border-radius: 0.25rem;
+  padding: 0.75rem;
+}
+
+/* Comprehensive Print Styles for Perfect PDF Generation */
+@media print {
+  @page {
+    size: A4;
+    margin: 0.5in;
+  }
+  
+  /* Force colors and backgrounds in print */
+  * {
+    -webkit-print-color-adjust: exact !important;
+    color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+  
+  /* Preserve fonts and typography exactly as in browser */
+  body, html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !important;
+    font-size: 12px !important;
+    line-height: 1.4 !important;
+    color: #000 !important;
+  }
+  
+  /* Preserve card styling and backgrounds */
+  .card, [class*="card"] {
+    background: white !important;
+    border: 1px solid #000 !important;
+    border-radius: 4px !important;
+    box-shadow: none !important;
+    margin-bottom: 20px !important;
+    padding: 16px !important;
+  }
+  
+  /* Preserve header styling */
+  .bg-red-500 {
+    background-color: #ef4444 !important;
+    color: white !important;
+  }
+  
+  /* Preserve text colors and weights */
+  .font-bold {
+    font-weight: 700 !important;
+  }
+  
+  .text-muted-foreground {
+    color: #6b7280 !important;
+  }
+  
+  /* Preserve input and form element styling */
+  input, textarea, select {
+    border: 1px solid #000 !important;
+    background: white !important;
+    padding: 8px !important;
+    margin: 2px 0 !important;
+    font-family: inherit !important;
+    font-size: 11px !important;
+  }
+  
+  /* Preserve checkbox and radio button styling */
+  input[type="checkbox"], input[type="radio"] {
+    width: 14px !important;
+    height: 14px !important;
+    border: 1px solid #000 !important;
+    background: white !important;
+    -webkit-appearance: none !important;
+    appearance: none !important;
+  }
+  
+  input[type="checkbox"]:checked {
+    background: #000 !important;
+    color: white !important;
+  }
+  
+  input[type="checkbox"]:checked::after {
+    content: "✓" !important;
+    display: block !important;
+    text-align: center !important;
+    color: white !important;
+    font-size: 10px !important;
+  }
+  
+  /* Preserve label styling */
+  label {
+    font-weight: 600 !important;
+    color: #000 !important;
+    margin-bottom: 4px !important;
+    display: block !important;
+  }
+  
+  /* Preserve gray backgrounds for sections */
+  .bg-muted, [class*="bg-gray"] {
+    background-color: #f3f4f6 !important;
+  }
+  
+  /* Preserve borders and spacing */
+  .border, [class*="border"] {
+    border: 1px solid #000 !important;
+  }
+  
+  .border-2 {
+    border-width: 2px !important;
+  }
+  
+  /* Preserve grid layouts */
+  .grid {
+    display: grid !important;
+  }
+  
+  .grid-cols-1 {
+    grid-template-columns: 1fr !important;
+  }
+  
+  .grid-cols-2 {
+    grid-template-columns: 1fr 1fr !important;
+  }
+  
+  .grid-cols-3 {
+    grid-template-columns: 1fr 1fr 1fr !important;
+  }
+  
+  .grid-cols-4 {
+    grid-template-columns: 1fr 1fr 1fr 1fr !important;
+  }
+  
+  .gap-4 {
+    gap: 16px !important;
+  }
+  
+  .gap-6 {
+    gap: 24px !important;
+  }
+  
+  /* Preserve spacing classes */
+  .p-4 {
+    padding: 16px !important;
+  }
+  
+  .p-6 {
+    padding: 24px !important;
+  }
+  
+  .mb-2 {
+    margin-bottom: 8px !important;
+  }
+  
+  .mb-4 {
+    margin-bottom: 16px !important;
+  }
+  
+  .mb-6 {
+    margin-bottom: 24px !important;
+  }
+  
+  .mb-8 {
+    margin-bottom: 32px !important;
+  }
+  
+  .mt-8 {
+    margin-top: 32px !important;
+  }
+  
+  .space-y-4 > * + * {
+    margin-top: 16px !important;
+  }
+  
+  .space-y-6 > * + * {
+    margin-top: 24px !important;
+  }
+  
+  /* Preserve text alignments */
+  .text-center {
+    text-align: center !important;
+  }
+  
+  .text-left {
+    text-align: left !important;
+  }
+  
+  .text-right {
+    text-align: right !important;
+  }
+  
+  /* Preserve flexbox layouts */
+  .flex {
+    display: flex !important;
+  }
+  
+  .items-center {
+    align-items: center !important;
+  }
+  
+  .justify-center {
+    justify-content: center !important;
+  }
+  
+  .justify-between {
+    justify-content: space-between !important;
+  }
+  
+  .space-x-2 > * + * {
+    margin-left: 8px !important;
+  }
+  
+  .space-x-4 > * + * {
+    margin-left: 16px !important;
+  }
+  
+  /* Page breaks for multi-page forms */
+  .page-break {
+    page-break-after: always !important;
+    break-after: page !important;
+  }
+  
+  /* Ensure each form page starts on new page */
+  .form-page-container {
+    page-break-after: always !important;
+    break-after: page !important;
+    min-height: 90vh !important;
+  }
+  
+  /* Don't break the last page */
+  .form-page-container:last-child {
+    page-break-after: auto !important;
+    break-after: auto !important;
+  }
+  
+  /* Hide print button and navigation */
+  .print\\:hidden {
+    display: none !important;
+  }
+  
+  /* Preserve icon styling */
+  .w-32.h-32, .w-48.h-32, .w-24.h-24 {
+    border: 1px solid #000 !important;
+    background: #f9f9f9 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+  
+  /* Preserve rounded corners */
+  .rounded {
+    border-radius: 4px !important;
+  }
+  
+  /* Preserve table styling */
+  table, .table {
+    border-collapse: collapse !important;
+    width: 100% !important;
+    margin: 8px 0 !important;
+  }
+  
+  th, td {
+    border: 1px solid #000 !important;
+    padding: 8px !important;
+    text-align: left !important;
+  }
+  
+  th {
+    background-color: #f3f4f6 !important;
+    font-weight: 700 !important;
+  }
+  
+  /* Preserve font sizes */
+  .text-xl {
+    font-size: 18px !important;
+  }
+  
+  .text-lg {
+    font-size: 16px !important;
+  }
+  
+  .text-sm {
+    font-size: 11px !important;
+  }
+  
+  .text-xs {
+    font-size: 10px !important;
+  }
+  
+  /* Ensure proper leading/line-height */
+  .leading-relaxed {
+    line-height: 1.6 !important;
+  }
+}
+
+/* Mobile Responsive Design */
+@media (max-width: 768px) {
+  .w-full.max-w-4xl {
+    padding: 0.5rem;
+    margin: 0;
+  }
+  
+  /* Make form inputs and text responsive */
+  .grid {
+    gap: 0.5rem;
+  }
+  
+  .grid-cols-2 {
+    grid-template-columns: 1fr;
+  }
+  
+  .grid-cols-3 {
+    grid-template-columns: 1fr;
+  }
+  
+  .grid-cols-4 {
+    grid-template-columns: 1fr 1fr;
+  }
+  
+  /* Adjust text sizes for mobile */
+  .text-xl {
+    font-size: 1.125rem;
+  }
+  
+  .text-lg {
+    font-size: 1rem;
+  }
+  
+  /* Ensure buttons don't overlap */
+  .print\\:hidden {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+}

@@ -1,0 +1,214 @@
+footer { 
+  background: #111; 
+  padding: 70px 5% 30px; 
+}
+
+.footer-content { 
+  display: grid; 
+  grid-template-columns: 1fr 1fr 1fr 1fr; 
+  gap: 40px; 
+  margin-bottom: 50px; 
+}
+
+.footer-column h3 { 
+  font-size: 1.3rem; 
+  margin-bottom: 25px; 
+  position: relative; 
+  padding-bottom: 10px; 
+  color: white;
+}
+
+.footer-column h3::after { 
+  content: ''; 
+  position: absolute; 
+  bottom: 0; 
+  left: 0; 
+  width: 40px; 
+  height: 3px; 
+  background: var(--accent); 
+}
+
+/* Brand Column */
+.footer-brand {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.footer-logo {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.logo-icon {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  background: #000;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo-icon .fa-cog {
+  font-size: 30px;
+  color: #000;
+  z-index: 2;
+}
+
+.logo-icon .fa-hard-hat {
+  position: absolute;
+  top: -5px;
+  font-size: 20px;
+  color: #ffa500;
+  z-index: 3;
+}
+
+.cityscape {
+  position: absolute;
+  bottom: 5px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 30px;
+  height: 8px;
+  background: linear-gradient(45deg, #333, #666);
+  border-radius: 2px;
+}
+
+.logo-text {
+  font-size: 24px;
+  font-weight: bold;
+  color: #ffa500;
+}
+
+.footer-taglines p {
+  color: white;
+  font-size: 14px;
+  margin: 5px 0;
+}
+
+.contact-button {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.contact-btn {
+  width: 50px;
+  height: 50px;
+  background: var(--accent);
+  border: none;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.contact-btn i {
+  color: white;
+  font-size: 18px;
+}
+
+.contact-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.contact-label {
+  color: white;
+  font-weight: bold;
+  font-size: 12px;
+}
+
+.contact-number {
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+/* Links with checkmarks */
+.footer-links { 
+  list-style: none; 
+}
+
+.footer-links li { 
+  margin-bottom: 12px; 
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.footer-links li i {
+  color: var(--accent);
+  font-size: 12px;
+}
+
+.footer-links a { 
+  color: #aaa; 
+  text-decoration: none; 
+  transition: var(--transition); 
+}
+
+.footer-links a:hover { 
+  color: var(--accent); 
+  padding-left: 5px; 
+}
+
+/* Information items */
+.info-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.info-icon {
+  width: 20px;
+  height: 20px;
+  color: var(--accent);
+  font-size: 16px;
+  margin-top: 2px;
+}
+
+.info-content {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.info-label {
+  color: white;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.info-detail {
+  color: #aaa;
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.copyright { 
+  text-align: center; 
+  padding-top: 30px; 
+  border-top: 1px solid rgba(255,255,255,0.1); 
+  color: #aaa; 
+  font-size: 0.9rem; 
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  .footer-content {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .footer-content {
+    grid-template-columns: 1fr;
+  }
+}
+

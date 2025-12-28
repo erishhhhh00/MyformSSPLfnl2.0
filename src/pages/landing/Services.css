@@ -1,0 +1,13 @@
+.section { padding: 100px 5%; }
+.section-title { font-size: 2.5rem; font-weight: 700; margin-bottom: 60px; text-align: center; position: relative; }
+.section-title::after { content: ''; position: absolute; bottom: -15px; left: 50%; transform: translateX(-50%); width: 80px; height: 4px; background: var(--accent); }
+
+.services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+.service-card { background: rgba(255, 255, 255, 0.05); border-radius: 10px; padding: 30px; transition: var(--transition); border: 1px solid rgba(255, 255, 255, 0.1); transform: translateY(50px); opacity: 0; }
+.service-card.visible { transform: translateY(0); opacity: 1; }
+.service-card:hover { transform: translateY(-10px); box-shadow: 0 15px 30px rgba(0,0,0,0.3); border-color: var(--accent); }
+.service-icon { font-size: 40px; color: var(--accent); margin-bottom: 20px; }
+.service-card h3 { font-size: 1.5rem; margin-bottom: 15px; }
+
+@keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+
