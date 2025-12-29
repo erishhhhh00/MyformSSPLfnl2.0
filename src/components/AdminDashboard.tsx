@@ -53,6 +53,7 @@ import { generateModerationPDF } from '../utils/moderationPdfGenerator';
 import { generateBatchPDF } from '@/utils/batchPdfGenerator';
 import { useToast } from '@/hooks/use-toast';
 import UserManagement from './UserManagement';
+import FuturisticLoader from './FuturisticLoader';
 
 interface SubmissionRecord {
   id: string;
@@ -130,6 +131,9 @@ const AdminDashboard: React.FC = () => {
   const [moderatedStudents, setModeratedStudents] = useState<any[]>([]);
   const [sentToAdminStudents, setSentToAdminStudents] = useState<any[]>([]);
 
+  // Page loading state for futuristic loader
+  const [isPageLoading, setIsPageLoading] = useState(true);
+
   // Load UIDs from server on component mount (NO localStorage)
   useEffect(() => {
     // load live UIDs from server
@@ -151,6 +155,8 @@ const AdminDashboard: React.FC = () => {
         setSentToAdminStudents(Array.isArray(adminStudents) ? adminStudents : []);
       } catch (e) {
         console.warn('Could not load data', e);
+      } finally {
+        setIsPageLoading(false);
       }
     };
 
@@ -534,6 +540,11 @@ const AdminDashboard: React.FC = () => {
         onBack={handleBackToDashboard}
       />
     );
+  }
+
+  // Show futuristic loader during initial page load
+  if (isPageLoading) {
+    return <FuturisticLoader type="loading" text="Loading Dashboard..." />;
   }
 
   return (

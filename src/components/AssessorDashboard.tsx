@@ -33,6 +33,7 @@ import { api, API_BASE } from '@/lib/api';
 import socket from '@/lib/socket';
 import { generateFormPDF } from '@/utils/pdfGenerator';
 import { useToast } from '@/hooks/use-toast';
+import FuturisticLoader from './FuturisticLoader';
 
 
 interface SubmissionRecord {
@@ -71,6 +72,9 @@ const AssessorDashboard: React.FC = () => {
     total_students: 0
   });
 
+  // Page loading state for futuristic loader
+  const [isPageLoading, setIsPageLoading] = useState(true);
+
   useEffect(() => {
     // Load UIDs and stats from server (NO localStorage)
     // ONLY show UIDs assigned to this assessor - no fallback to all
@@ -92,6 +96,8 @@ const AssessorDashboard: React.FC = () => {
         setStats(serverStats);
       } catch (e) {
         console.warn('Could not load data', e);
+      } finally {
+        setIsPageLoading(false);
       }
     };
 
@@ -201,6 +207,10 @@ const AssessorDashboard: React.FC = () => {
   // Use with_moderator_count from server, fallback to sum for backward compatibility
   const sentToModerator = stats.with_moderator_count || ((stats.ready_for_moderation_count || 0) + (stats.moderation_complete_count || 0) + (stats.sent_to_admin_count || 0) + (stats.approved_count || 0));
 
+  // Show futuristic loader during initial page load
+  if (isPageLoading) {
+    return <FuturisticLoader type="loading" text="Loading Assessor..." />;
+  }
 
   return (
     <div className="flex h-screen overflow-hidden">

@@ -28,6 +28,7 @@ import { api, API_BASE } from '@/lib/api';
 import socket from '@/lib/socket';
 import { generateFormPDF } from '@/utils/pdfGenerator';
 import { useToast } from '@/hooks/use-toast';
+import FuturisticLoader from './FuturisticLoader';
 
 interface Student {
   student_id: string;
@@ -203,6 +204,11 @@ const ModeratorDashboard: React.FC = () => {
 
   const totalPending = pendingStudents.length;
   const totalModerated = moderatedStudents.length + sentToAdminStudents.length;
+
+  // Show futuristic loader during initial page load
+  if (loading) {
+    return <FuturisticLoader type="loading" text="Loading Moderator..." />;
+  }
 
   return (
     <div className="flex h-screen overflow-hidden">
