@@ -77,40 +77,42 @@ const LoginPage: React.FC = () => {
             <style>{`
                 @keyframes textGlow {
                     0%, 100% { 
-                        text-shadow: 0 0 20px rgba(255,255,255,0.1), 0 0 40px rgba(255,255,255,0.05);
-                        opacity: 0.08;
+                        text-shadow: 0 0 40px rgba(139, 92, 246, 0.2), 0 0 80px rgba(6, 182, 212, 0.1);
+                        opacity: 0.1;
                     }
                     50% { 
-                        text-shadow: 0 0 30px rgba(255,255,255,0.15), 0 0 60px rgba(255,255,255,0.08);
-                        opacity: 0.12;
+                        text-shadow: 0 0 60px rgba(139, 92, 246, 0.3), 0 0 120px rgba(6, 182, 212, 0.15);
+                        opacity: 0.15;
                     }
                 }
                 .watermark-text {
                     position: absolute;
-                    font-size: clamp(100px, 18vw, 280px);
+                    font-size: clamp(150px, 25vw, 400px);
                     font-weight: 900;
                     color: white;
-                    opacity: 0.08;
+                    opacity: 0.12;
                     pointer-events: none;
                     user-select: none;
                     text-transform: uppercase;
-                    letter-spacing: 0.15em;
+                    letter-spacing: 0.2em;
                     white-space: nowrap;
-                    animation: textGlow 4s ease-in-out infinite;
+                    animation: textGlow 6s ease-in-out infinite;
                     z-index: 1;
+                    font-family: 'Arial Black', 'Helvetica Neue', sans-serif;
                 }
                 .watermark-top {
-                    top: 8%;
+                    top: 5%;
                     left: 50%;
                     transform: translateX(-50%);
                 }
                 .watermark-bottom {
-                    bottom: 8%;
+                    bottom: 5%;
                     left: 50%;
                     transform: translateX(-50%);
-                    font-size: clamp(60px, 10vw, 150px);
-                    opacity: 0.06;
-                    animation-delay: 2s;
+                    font-size: clamp(80px, 12vw, 200px);
+                    opacity: 0.08;
+                    animation-delay: 3s;
+                    letter-spacing: 0.25em;
                 }
                 .login-card {
                     backdrop-filter: blur(20px);
@@ -149,8 +151,9 @@ const LoginPage: React.FC = () => {
             `}</style>
 
             {/* Transparent Bold Text Watermarks */}
-            <div className="watermark-text watermark-top">LOGIN</div>
-            <div className="watermark-text watermark-bottom">SECURE ACCESS</div>
+            <div className="watermark-text watermark-top">SSIPL</div>
+            <div className="watermark-text watermark-bottom">ADMIN ACCESS</div>
+
 
             {/* Login Card */}
             <Card className="login-card w-full max-w-md relative z-10 border-0 rounded-2xl overflow-hidden mx-4">

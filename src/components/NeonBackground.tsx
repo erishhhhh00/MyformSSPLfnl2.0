@@ -131,10 +131,10 @@ const NeonBackground: React.FC = () => {
             scene.add(glow);
         }
 
-        // Animation loop
+        // Animation loop - SLOWER animation
         let time = 0;
         const animate = () => {
-            time += 0.01;
+            time += 0.003; // Slowed down from 0.01 to 0.003
 
             // Animate curves
             curves.forEach((curveData, index) => {
