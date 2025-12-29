@@ -537,10 +537,31 @@ const AdminDashboard: React.FC = () => {
   }
 
   return (
-    <div className="flex h-screen bg-gray-100">
-      {/* Sidebar */}
-      {/* Sidebar - Modern Redesign */}
-      <div className={`${sidebarOpen ? 'w-[280px]' : 'w-20'} bg-slate-900 text-slate-100 transition-all duration-300 ease-in-out flex flex-col shadow-2xl z-50 rounded-r-3xl border-r border-slate-800 relative`}>
+    <div className="flex h-screen overflow-hidden">
+      {/* Premium Gradient Background */}
+      <style>{`
+        .admin-bg {
+          background: linear-gradient(135deg, #e0e7ff 0%, #dbeafe 25%, #e0f2fe 50%, #f0fdfa 75%, #f5f3ff 100%);
+        }
+        .glassmorphism-card {
+          background: rgba(255, 255, 255, 0.7);
+          backdrop-filter: blur(20px);
+          border: 1px solid rgba(255, 255, 255, 0.8);
+        }
+        @keyframes gradient-x {
+          0%, 100% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
+        }
+        .animate-gradient-x {
+          animation: gradient-x 3s ease infinite;
+        }
+        .premium-sidebar {
+          background: linear-gradient(180deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+        }
+      `}</style>
+
+      {/* Sidebar - Premium Dark Design */}
+      <div className={`${sidebarOpen ? 'w-[280px]' : 'w-20'} premium-sidebar text-slate-100 transition-all duration-300 ease-in-out flex flex-col shadow-2xl z-50 border-r border-slate-700/50 relative`}>
 
         {/* Top Gradient Line */}
         <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-teal-500 bg-[length:200%_200%] animate-gradient-x"></div>
@@ -624,12 +645,12 @@ const AdminDashboard: React.FC = () => {
         </div>
       </div>
 
-      {/* Main Content */}
-      <div className="flex-1 overflow-auto bg-gradient-to-br from-slate-50 via-gray-50 to-slate-100">
-        {/* Top Bar */}
-        <div className="bg-gradient-to-r from-white via-white to-slate-50 shadow-md p-5 flex items-center justify-between border-b border-slate-200">
+      {/* Main Content - Premium Gradient Canvas */}
+      <div className="flex-1 overflow-auto admin-bg">
+        {/* Top Bar - Glassmorphism */}
+        <div className="glassmorphism-card shadow-lg shadow-slate-200/50 p-5 flex items-center justify-between border-b border-white/50 mx-4 mt-4 rounded-2xl">
           <div>
-            <h2 className="text-2xl font-bold bg-gradient-to-r from-slate-800 to-slate-600 bg-clip-text text-transparent">
+            <h2 className="text-2xl font-bold bg-gradient-to-r from-slate-800 via-indigo-700 to-purple-700 bg-clip-text text-transparent">
               {activeView === 'overview' && '🎯 Training Dashboard'}
               {activeView === 'trainings' && '📚 Training Management'}
               {activeView === 'trainer' && '👨‍🏫 Trainer View'}
@@ -760,9 +781,9 @@ const AdminDashboard: React.FC = () => {
                 </div>
               </div>
 
-              {/* UID Management Panel */}
-              <div className="bg-white rounded-2xl shadow-lg shadow-gray-100 border border-gray-100 overflow-hidden mb-8">
-                <div className="bg-gradient-to-r from-slate-50 to-gray-50 px-6 py-4 border-b border-gray-100">
+              {/* UID Management Panel - Glassmorphism */}
+              <div className="glassmorphism-card rounded-2xl shadow-xl shadow-indigo-100/50 overflow-hidden mb-8">
+                <div className="bg-gradient-to-r from-white/50 to-indigo-50/50 px-6 py-4 border-b border-white/60">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-3">
                       <div className="p-2.5 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-xl shadow-lg shadow-blue-200">
@@ -1491,9 +1512,9 @@ const AdminDashboard: React.FC = () => {
 
               {/* Form Submissions Section (Default Dashboard) */}
               {activeView === 'overview' && (
-                <div className="bg-white rounded-lg shadow p-6">
+                <div className="glassmorphism-card rounded-2xl shadow-xl shadow-purple-100/50 p-6">
                   <div className="flex items-center justify-between mb-6">
-                    <h3 className="text-xl font-bold text-gray-800">Recent Form Submissions</h3>
+                    <h3 className="text-xl font-bold bg-gradient-to-r from-slate-800 to-indigo-700 bg-clip-text text-transparent">Recent Form Submissions</h3>
                   </div>
 
                   {submissions.length === 0 ? (

@@ -103,7 +103,7 @@ const NeonBackground: React.FC = () => {
         particleGeometry.setAttribute('color', new THREE.BufferAttribute(particleColors, 3));
 
         const particleMaterial = new THREE.PointsMaterial({
-            size: 0.15, // Bigger particles
+            size: 0.01, // Bigger particles
             vertexColors: true,
             transparent: true,
             opacity: 0.9,
