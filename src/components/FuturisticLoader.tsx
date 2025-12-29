@@ -20,288 +20,160 @@ const FuturisticLoader: React.FC<FuturisticLoaderProps> = ({
     }
   };
 
+  const getIcon = () => {
+    switch (type) {
+      case 'login':
+        return '🔐';
+      case 'logout':
+        return '👋';
+      default:
+        return '⚡';
+    }
+  };
+
   return (
-    <div className="futuristic-loader-overlay">
+    <div style={{
+      position: 'fixed',
+      inset: 0,
+      zIndex: 9999,
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'center',
+      background: 'linear-gradient(135deg, #0a0a1a 0%, #1a0a2e 50%, #0a0a1a 100%)'
+    }}>
       <style>{`
-        .futuristic-loader-overlay {
-          position: fixed;
-          inset: 0;
-          z-index: 9999;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: center;
-          background: radial-gradient(ellipse at center, #0a0a1e 0%, #050510 100%);
-        }
-
-        /* Floating particles */
-        .particles-container {
-          position: absolute;
-          inset: 0;
-          overflow: hidden;
-          pointer-events: none;
-        }
-
-        .particle {
-          position: absolute;
-          width: 4px;
-          height: 4px;
-          background: radial-gradient(circle, rgba(139, 92, 246, 0.9) 0%, transparent 70%);
-          border-radius: 50%;
-          animation: floatParticle 8s infinite ease-in-out;
-        }
-
-        @keyframes floatParticle {
-          0%, 100% {
-            transform: translateY(100vh) scale(0);
-            opacity: 0;
-          }
-          10% {
-            opacity: 1;
-          }
-          90% {
-            opacity: 1;
-          }
-          100% {
-            transform: translateY(-100vh) scale(1);
-            opacity: 0;
-          }
-        }
-
-        /* 3D Loader Container */
-        .loader-3d-container {
-          position: relative;
-          width: 200px;
-          height: 200px;
-          perspective: 800px;
-        }
-
-        /* Outer Ring - CLEARER */
-        .ring-outer {
-          position: absolute;
-          inset: 0;
-          border-radius: 50%;
-          border: 4px solid transparent;
-          border-top-color: #8b5cf6;
-          border-right-color: #06b6d4;
-          animation: rotateOuter 2s linear infinite;
-          box-shadow: 
-            0 0 20px rgba(139, 92, 246, 0.8),
-            0 0 40px rgba(139, 92, 246, 0.4);
-        }
-
-        @keyframes rotateOuter {
-          0% {
-            transform: rotateX(35deg) rotateY(0deg);
-          }
-          100% {
-            transform: rotateX(35deg) rotateY(360deg);
-          }
-        }
-
-        /* Middle Ring - CLEARER */
-        .ring-middle {
-          position: absolute;
-          inset: 20px;
-          border-radius: 50%;
-          border: 4px solid transparent;
-          border-top-color: #06b6d4;
-          border-left-color: #ec4899;
-          animation: rotateMiddle 1.5s linear infinite reverse;
-          box-shadow: 
-            0 0 20px rgba(6, 182, 212, 0.8),
-            0 0 40px rgba(6, 182, 212, 0.4);
-        }
-
-        @keyframes rotateMiddle {
-          0% {
-            transform: rotateX(-25deg) rotateZ(0deg);
-          }
-          100% {
-            transform: rotateX(-25deg) rotateZ(360deg);
-          }
-        }
-
-        /* Inner Ring - CLEARER */
-        .ring-inner {
-          position: absolute;
-          inset: 40px;
-          border-radius: 50%;
-          border: 3px solid transparent;
-          border-bottom-color: #ec4899;
-          border-right-color: #8b5cf6;
-          animation: rotateInner 1s linear infinite;
-          box-shadow: 
-            0 0 20px rgba(236, 72, 153, 0.8),
-            0 0 40px rgba(236, 72, 153, 0.4);
-        }
-
-        @keyframes rotateInner {
-          0% {
-            transform: rotateY(45deg) rotateX(0deg);
-          }
-          100% {
-            transform: rotateY(45deg) rotateX(360deg);
-          }
-        }
-
-        /* Core Glow */
-        .core-glow {
-          position: absolute;
-          inset: 60px;
-          border-radius: 50%;
-          background: radial-gradient(circle, 
-            rgba(139, 92, 246, 0.4) 0%, 
-            rgba(6, 182, 212, 0.2) 50%, 
-            transparent 70%
-          );
-          animation: pulseCore 2s ease-in-out infinite;
-          box-shadow: 
-            0 0 60px rgba(139, 92, 246, 0.6),
-            0 0 100px rgba(6, 182, 212, 0.4);
-        }
-
-        @keyframes pulseCore {
-          0%, 100% {
-            transform: scale(0.8);
-            opacity: 0.6;
-          }
-          50% {
-            transform: scale(1.2);
-            opacity: 1;
-          }
-        }
-
-        /* Center Icon */
-        .center-icon {
-          position: absolute;
-          inset: 70px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          font-size: 40px;
-          color: white;
-          text-shadow: 0 0 20px rgba(139, 92, 246, 0.8);
-          animation: iconPulse 1.5s ease-in-out infinite;
-        }
-
-        @keyframes iconPulse {
-          0%, 100% {
-            transform: scale(1);
-            filter: brightness(1);
-          }
-          50% {
-            transform: scale(1.1);
-            filter: brightness(1.3);
-          }
-        }
-
-        /* Loading Text */
-        .loading-text {
-          margin-top: 40px;
-          font-size: 1.5rem;
-          font-weight: 600;
-          background: linear-gradient(90deg, #8b5cf6, #06b6d4, #ec4899, #8b5cf6);
-          background-size: 300% 100%;
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
-          background-clip: text;
-          animation: gradientFlow 2s linear infinite;
-          text-shadow: none;
-        }
-
-        @keyframes gradientFlow {
-          0% {
-            background-position: 0% 50%;
-          }
-          100% {
-            background-position: 300% 50%;
-          }
-        }
-
-        /* Loading Dots */
-        .loading-dots {
-          display: flex;
-          gap: 8px;
-          margin-top: 20px;
-        }
-
-        .dot {
-          width: 10px;
-          height: 10px;
-          border-radius: 50%;
-          background: linear-gradient(135deg, #8b5cf6, #06b6d4);
-          animation: dotBounce 1.4s ease-in-out infinite;
-          box-shadow: 0 0 15px rgba(139, 92, 246, 0.6);
-        }
-
-        .dot:nth-child(1) { animation-delay: 0s; }
-        .dot:nth-child(2) { animation-delay: 0.2s; }
-        .dot:nth-child(3) { animation-delay: 0.4s; }
-
-        @keyframes dotBounce {
-          0%, 80%, 100% {
-            transform: translateY(0) scale(1);
-          }
-          40% {
-            transform: translateY(-15px) scale(1.2);
-          }
-        }
-
-        /* Glassmorphism card behind loader */
-        .glass-backdrop {
-          position: absolute;
-          width: 280px;
-          height: 280px;
-          border-radius: 50%;
-          background: rgba(255, 255, 255, 0.03);
-          backdrop-filter: blur(10px);
-          border: 1px solid rgba(255, 255, 255, 0.05);
-          box-shadow: 
-            inset 0 0 50px rgba(139, 92, 246, 0.1),
-            0 0 80px rgba(6, 182, 212, 0.1);
-        }
-      `}</style>
+                @keyframes spin-slow {
+                    from { transform: rotate(0deg); }
+                    to { transform: rotate(360deg); }
+                }
+                @keyframes spin-reverse {
+                    from { transform: rotate(360deg); }
+                    to { transform: rotate(0deg); }
+                }
+                @keyframes pulse-glow {
+                    0%, 100% { opacity: 0.6; transform: scale(0.95); }
+                    50% { opacity: 1; transform: scale(1.05); }
+                }
+                @keyframes float-up {
+                    0% { transform: translateY(100vh); opacity: 0; }
+                    10% { opacity: 0.8; }
+                    90% { opacity: 0.8; }
+                    100% { transform: translateY(-100vh); opacity: 0; }
+                }
+                @keyframes text-shimmer {
+                    0% { background-position: -200% center; }
+                    100% { background-position: 200% center; }
+                }
+                @keyframes bounce-dot {
+                    0%, 80%, 100% { transform: translateY(0); }
+                    40% { transform: translateY(-12px); }
+                }
+            `}</style>
 
       {/* Floating Particles */}
-      <div className="particles-container">
-        {[...Array(20)].map((_, i) => (
+      <div style={{ position: 'absolute', inset: 0, overflow: 'hidden', pointerEvents: 'none' }}>
+        {[...Array(15)].map((_, i) => (
           <div
             key={i}
-            className="particle"
             style={{
+              position: 'absolute',
               left: `${Math.random() * 100}%`,
+              width: '6px',
+              height: '6px',
+              borderRadius: '50%',
+              background: i % 3 === 0 ? '#8b5cf6' : i % 3 === 1 ? '#06b6d4' : '#ec4899',
+              animation: `float-up ${8 + Math.random() * 4}s linear infinite`,
               animationDelay: `${Math.random() * 8}s`,
-              animationDuration: `${6 + Math.random() * 4}s`,
-              width: `${2 + Math.random() * 4}px`,
-              height: `${2 + Math.random() * 4}px`,
             }}
           />
         ))}
       </div>
 
-      {/* Glass Backdrop */}
-      <div className="glass-backdrop"></div>
+      {/* Loader Container */}
+      <div style={{ position: 'relative', width: '180px', height: '180px' }}>
 
-      {/* 3D Loader */}
-      <div className="loader-3d-container">
-        <div className="ring-outer"></div>
-        <div className="ring-middle"></div>
-        <div className="ring-inner"></div>
-        <div className="core-glow"></div>
-        <div className="center-icon">
-          {type === 'login' ? '🔐' : type === 'logout' ? '👋' : '⚡'}
+        {/* Outer Ring - Purple/Violet */}
+        <div style={{
+          position: 'absolute',
+          inset: 0,
+          borderRadius: '50%',
+          border: '4px solid transparent',
+          borderTopColor: '#8b5cf6',
+          borderRightColor: '#a855f7',
+          animation: 'spin-slow 2s linear infinite',
+          filter: 'drop-shadow(0 0 8px #8b5cf6)'
+        }} />
+
+        {/* Middle Ring - Cyan/Teal */}
+        <div style={{
+          position: 'absolute',
+          inset: '25px',
+          borderRadius: '50%',
+          border: '4px solid transparent',
+          borderTopColor: '#06b6d4',
+          borderLeftColor: '#14b8a6',
+          animation: 'spin-reverse 1.5s linear infinite',
+          filter: 'drop-shadow(0 0 8px #06b6d4)'
+        }} />
+
+        {/* Inner Ring - Pink/Magenta */}
+        <div style={{
+          position: 'absolute',
+          inset: '50px',
+          borderRadius: '50%',
+          border: '3px solid transparent',
+          borderBottomColor: '#ec4899',
+          borderRightColor: '#f472b6',
+          animation: 'spin-slow 1s linear infinite',
+          filter: 'drop-shadow(0 0 8px #ec4899)'
+        }} />
+
+        {/* Center Icon */}
+        <div style={{
+          position: 'absolute',
+          inset: '60px',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          borderRadius: '50%',
+          background: 'radial-gradient(circle, rgba(139, 92, 246, 0.3) 0%, transparent 70%)',
+          animation: 'pulse-glow 2s ease-in-out infinite'
+        }}>
+          <span style={{ fontSize: '36px' }}>{getIcon()}</span>
         </div>
       </div>
 
       {/* Loading Text */}
-      <div className="loading-text">{getMessage()}</div>
+      <div style={{
+        marginTop: '30px',
+        fontSize: '1.4rem',
+        fontWeight: 600,
+        background: 'linear-gradient(90deg, #8b5cf6, #06b6d4, #ec4899, #8b5cf6)',
+        backgroundSize: '200% auto',
+        WebkitBackgroundClip: 'text',
+        WebkitTextFillColor: 'transparent',
+        backgroundClip: 'text',
+        animation: 'text-shimmer 2s linear infinite'
+      }}>
+        {getMessage()}
+      </div>
 
       {/* Bouncing Dots */}
-      <div className="loading-dots">
-        <div className="dot"></div>
-        <div className="dot"></div>
-        <div className="dot"></div>
+      <div style={{ display: 'flex', gap: '8px', marginTop: '16px' }}>
+        {[0, 1, 2].map((i) => (
+          <div
+            key={i}
+            style={{
+              width: '10px',
+              height: '10px',
+              borderRadius: '50%',
+              background: i === 0 ? '#8b5cf6' : i === 1 ? '#06b6d4' : '#ec4899',
+              animation: `bounce-dot 1.4s ease-in-out infinite`,
+              animationDelay: `${i * 0.16}s`,
+            }}
+          />
+        ))}
       </div>
     </div>
   );
