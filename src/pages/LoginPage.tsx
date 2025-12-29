@@ -106,13 +106,13 @@ const LoginPage: React.FC = () => {
                     transform: translateX(-50%);
                 }
                 .watermark-bottom {
-                    bottom: 5%;
+                    bottom: 2%;
                     left: 50%;
                     transform: translateX(-50%);
-                    font-size: clamp(80px, 12vw, 200px);
-                    opacity: 0.08;
+                    font-size: clamp(50px, 8vw, 140px);
+                    opacity: 0.1;
                     animation-delay: 3s;
-                    letter-spacing: 0.25em;
+                    letter-spacing: 0.15em;
                 }
                 .login-card {
                     backdrop-filter: blur(20px);

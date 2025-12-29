@@ -103,10 +103,10 @@ const NeonBackground: React.FC = () => {
         particleGeometry.setAttribute('color', new THREE.BufferAttribute(particleColors, 3));
 
         const particleMaterial = new THREE.PointsMaterial({
-            size: 0.05,
+            size: 0.15, // Bigger particles
             vertexColors: true,
             transparent: true,
-            opacity: 0.8,
+            opacity: 0.9,
             blending: THREE.AdditiveBlending,
         });
 
@@ -160,11 +160,11 @@ const NeonBackground: React.FC = () => {
                 material.opacity = 0.5 + Math.sin(time * 2 + curveData.offset) * 0.3;
             });
 
-            // Animate particles
+            // Animate particles - FASTER movement
             const particlePos = particles.geometry.attributes.position.array as Float32Array;
             for (let i = 0; i < particleCount; i++) {
-                particlePos[i * 3] += Math.sin(time + i) * 0.002;
-                particlePos[i * 3 + 1] += Math.cos(time + i * 0.5) * 0.002;
+                particlePos[i * 3] += Math.sin(time * 3 + i) * 0.008;
+                particlePos[i * 3 + 1] += Math.cos(time * 3 + i * 0.5) * 0.008;
             }
             particles.geometry.attributes.position.needsUpdate = true;
 
