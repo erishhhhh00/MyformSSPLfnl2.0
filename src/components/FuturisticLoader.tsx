@@ -42,265 +42,185 @@ const FuturisticLoader: React.FC<FuturisticLoaderProps> = ({
                     flex-direction: column;
                     align-items: center;
                     justify-content: center;
-                    background: radial-gradient(ellipse at center, #0f0a1f 0%, #050208 100%);
+                    background: #0a0a12;
                     overflow: hidden;
-                }
-
-                /* Animated Background Gradient */
-                .bg-glow {
-                    position: absolute;
-                    width: 600px;
-                    height: 600px;
-                    border-radius: 50%;
-                    background: radial-gradient(circle, rgba(139, 92, 246, 0.15) 0%, transparent 70%);
-                    animation: bg-pulse 4s ease-in-out infinite;
-                    pointer-events: none;
-                }
-
-                @keyframes bg-pulse {
-                    0%, 100% { transform: scale(0.8); opacity: 0.5; }
-                    50% { transform: scale(1.2); opacity: 0.8; }
                 }
 
                 /* Floating Particles */
                 .particle {
                     position: absolute;
                     border-radius: 50%;
-                    animation: float-particle 10s linear infinite;
+                    animation: float-up 12s linear infinite;
                     pointer-events: none;
                 }
 
-                @keyframes float-particle {
-                    0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+                @keyframes float-up {
+                    0% { transform: translateY(100vh); opacity: 0; }
                     10% { opacity: 1; }
                     90% { opacity: 1; }
-                    100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+                    100% { transform: translateY(-100vh); opacity: 0; }
                 }
 
                 /* 3D Loader Container */
-                .loader-3d-wrapper {
+                .loader-wrapper {
                     position: relative;
-                    width: 220px;
-                    height: 220px;
-                    perspective: 1000px;
-                    transform-style: preserve-3d;
+                    width: 200px;
+                    height: 200px;
+                    perspective: 800px;
                 }
 
-                /* Glassmorphism Backdrop */
-                .glass-backdrop {
+                /* Ring Base Style */
+                .ring {
                     position: absolute;
-                    inset: -20px;
                     border-radius: 50%;
-                    background: rgba(255, 255, 255, 0.03);
-                    backdrop-filter: blur(10px);
-                    -webkit-backdrop-filter: blur(10px);
-                    border: 1px solid rgba(255, 255, 255, 0.05);
-                    animation: glass-rotate 20s linear infinite;
+                    border-style: solid;
+                    border-color: transparent;
                 }
 
-                @keyframes glass-rotate {
-                    from { transform: rotateZ(0deg); }
-                    to { transform: rotateZ(360deg); }
-                }
-
-                /* Outer Ring - 3D Purple */
-                .ring-outer {
-                    position: absolute;
+                /* Outer Ring - PURPLE - Clear & Bright */
+                .ring-1 {
                     inset: 0;
-                    border-radius: 50%;
-                    border: 5px solid transparent;
-                    border-top-color: #a855f7;
-                    border-right-color: #8b5cf6;
-                    animation: spin-3d-outer 2.5s linear infinite;
-                    box-shadow: 
-                        0 0 30px rgba(168, 85, 247, 0.6),
-                        0 0 60px rgba(139, 92, 246, 0.4),
-                        inset 0 0 20px rgba(168, 85, 247, 0.2);
-                    transform-style: preserve-3d;
+                    border-width: 4px;
+                    border-top-color: #c084fc;
+                    border-right-color: #a855f7;
+                    animation: spin-1 3s linear infinite;
+                    filter: drop-shadow(0 0 12px #a855f7);
                 }
 
-                @keyframes spin-3d-outer {
-                    0% { transform: rotateX(60deg) rotateY(0deg); }
-                    100% { transform: rotateX(60deg) rotateY(360deg); }
+                @keyframes spin-1 {
+                    from { transform: rotateX(70deg) rotateZ(0deg); }
+                    to { transform: rotateX(70deg) rotateZ(360deg); }
                 }
 
-                /* Middle Ring - 3D Cyan */
-                .ring-middle {
+                /* Second Ring - CYAN - Clear & Bright */
+                .ring-2 {
+                    inset: 25px;
+                    border-width: 4px;
+                    border-top-color: #22d3ee;
+                    border-left-color: #06b6d4;
+                    animation: spin-2 2.5s linear infinite reverse;
+                    filter: drop-shadow(0 0 12px #06b6d4);
+                }
+
+                @keyframes spin-2 {
+                    from { transform: rotateX(-60deg) rotateZ(0deg); }
+                    to { transform: rotateX(-60deg) rotateZ(360deg); }
+                }
+
+                /* Third Ring - PINK - Clear & Bright */
+                .ring-3 {
+                    inset: 50px;
+                    border-width: 3px;
+                    border-bottom-color: #f472b6;
+                    border-right-color: #ec4899;
+                    animation: spin-3 2s linear infinite;
+                    filter: drop-shadow(0 0 10px #ec4899);
+                }
+
+                @keyframes spin-3 {
+                    from { transform: rotateY(60deg) rotateX(0deg); }
+                    to { transform: rotateY(60deg) rotateX(360deg); }
+                }
+
+                /* Center Icon Container */
+                .icon-container {
                     position: absolute;
-                    inset: 30px;
-                    border-radius: 50%;
-                    border: 4px solid transparent;
-                    border-top-color: #06b6d4;
-                    border-left-color: #22d3ee;
-                    animation: spin-3d-middle 2s linear infinite reverse;
-                    box-shadow: 
-                        0 0 25px rgba(6, 182, 212, 0.6),
-                        0 0 50px rgba(34, 211, 238, 0.4),
-                        inset 0 0 15px rgba(6, 182, 212, 0.2);
-                    transform-style: preserve-3d;
-                }
-
-                @keyframes spin-3d-middle {
-                    0% { transform: rotateX(-50deg) rotateZ(0deg); }
-                    100% { transform: rotateX(-50deg) rotateZ(360deg); }
-                }
-
-                /* Inner Ring - 3D Pink */
-                .ring-inner {
-                    position: absolute;
-                    inset: 55px;
-                    border-radius: 50%;
-                    border: 3px solid transparent;
-                    border-bottom-color: #ec4899;
-                    border-right-color: #f472b6;
-                    animation: spin-3d-inner 1.5s linear infinite;
-                    box-shadow: 
-                        0 0 20px rgba(236, 72, 153, 0.6),
-                        0 0 40px rgba(244, 114, 182, 0.4),
-                        inset 0 0 12px rgba(236, 72, 153, 0.2);
-                    transform-style: preserve-3d;
-                }
-
-                @keyframes spin-3d-inner {
-                    0% { transform: rotateY(70deg) rotateX(0deg); }
-                    100% { transform: rotateY(70deg) rotateX(360deg); }
-                }
-
-                /* Core Glow Orb */
-                .core-orb {
-                    position: absolute;
-                    inset: 70px;
-                    border-radius: 50%;
-                    background: radial-gradient(circle at 30% 30%, 
-                        rgba(168, 85, 247, 0.5) 0%, 
-                        rgba(139, 92, 246, 0.3) 30%,
-                        rgba(6, 182, 212, 0.2) 60%,
-                        transparent 100%
-                    );
-                    box-shadow: 
-                        0 0 60px rgba(139, 92, 246, 0.5),
-                        0 0 100px rgba(6, 182, 212, 0.3),
-                        inset 0 0 30px rgba(236, 72, 153, 0.2);
-                    animation: orb-pulse 2s ease-in-out infinite;
-                    backdrop-filter: blur(5px);
-                    -webkit-backdrop-filter: blur(5px);
-                }
-
-                @keyframes orb-pulse {
-                    0%, 100% { transform: scale(0.9); opacity: 0.7; }
-                    50% { transform: scale(1.1); opacity: 1; }
-                }
-
-                /* Center Icon */
-                .center-icon {
-                    position: absolute;
-                    inset: 75px;
+                    inset: 65px;
                     display: flex;
                     align-items: center;
                     justify-content: center;
-                    font-size: 38px;
-                    filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.5));
-                    animation: icon-bounce 1.5s ease-in-out infinite;
-                    z-index: 10;
+                    border-radius: 50%;
+                    background: radial-gradient(circle, rgba(139, 92, 246, 0.2) 0%, transparent 70%);
                 }
 
-                @keyframes icon-bounce {
-                    0%, 100% { transform: translateY(0) scale(1); }
-                    50% { transform: translateY(-5px) scale(1.1); }
+                .center-icon {
+                    font-size: 42px;
+                    animation: icon-pulse 1.5s ease-in-out infinite;
+                    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.5));
+                }
+
+                @keyframes icon-pulse {
+                    0%, 100% { transform: scale(1); }
+                    50% { transform: scale(1.15); }
                 }
 
                 /* Loading Text */
                 .loading-text {
-                    margin-top: 40px;
-                    font-size: 1.5rem;
+                    margin-top: 35px;
+                    font-size: 1.4rem;
                     font-weight: 600;
-                    font-style: italic;
-                    background: linear-gradient(90deg, #a855f7, #06b6d4, #ec4899, #a855f7);
+                    background: linear-gradient(90deg, #c084fc, #22d3ee, #f472b6, #c084fc);
                     background-size: 300% 100%;
                     -webkit-background-clip: text;
                     -webkit-text-fill-color: transparent;
                     background-clip: text;
-                    animation: text-flow 3s linear infinite;
-                    text-shadow: none;
+                    animation: text-shimmer 2s linear infinite;
                 }
 
-                @keyframes text-flow {
+                @keyframes text-shimmer {
                     0% { background-position: 0% 50%; }
                     100% { background-position: 300% 50%; }
                 }
 
                 /* Bouncing Dots */
-                .dots-container {
+                .dots {
                     display: flex;
                     gap: 10px;
-                    margin-top: 20px;
+                    margin-top: 18px;
                 }
 
                 .dot {
                     width: 12px;
                     height: 12px;
                     border-radius: 50%;
-                    animation: dot-bounce 1.4s ease-in-out infinite;
-                    box-shadow: 0 0 15px currentColor;
+                    animation: bounce 1.4s ease-in-out infinite;
                 }
 
-                .dot:nth-child(1) { 
-                    background: linear-gradient(135deg, #a855f7, #8b5cf6); 
-                    animation-delay: 0s; 
-                }
-                .dot:nth-child(2) { 
-                    background: linear-gradient(135deg, #06b6d4, #22d3ee); 
-                    animation-delay: 0.2s; 
-                }
-                .dot:nth-child(3) { 
-                    background: linear-gradient(135deg, #ec4899, #f472b6); 
-                    animation-delay: 0.4s; 
-                }
+                .dot-1 { background: #c084fc; animation-delay: 0s; box-shadow: 0 0 10px #c084fc; }
+                .dot-2 { background: #22d3ee; animation-delay: 0.2s; box-shadow: 0 0 10px #22d3ee; }
+                .dot-3 { background: #f472b6; animation-delay: 0.4s; box-shadow: 0 0 10px #f472b6; }
 
-                @keyframes dot-bounce {
-                    0%, 80%, 100% { transform: translateY(0) scale(1); }
-                    40% { transform: translateY(-15px) scale(1.2); }
+                @keyframes bounce {
+                    0%, 80%, 100% { transform: translateY(0); }
+                    40% { transform: translateY(-12px); }
                 }
             `}</style>
 
-      {/* Background Glow */}
-      <div className="bg-glow" />
-
       {/* Floating Particles */}
-      {[...Array(20)].map((_, i) => (
+      {[...Array(15)].map((_, i) => (
         <div
           key={i}
           className="particle"
           style={{
             left: `${Math.random() * 100}%`,
-            width: `${4 + Math.random() * 6}px`,
-            height: `${4 + Math.random() * 6}px`,
-            background: ['#a855f7', '#06b6d4', '#ec4899'][i % 3],
-            animationDelay: `${Math.random() * 10}s`,
-            animationDuration: `${8 + Math.random() * 6}s`,
-            boxShadow: `0 0 10px ${['#a855f7', '#06b6d4', '#ec4899'][i % 3]}`,
+            width: `${3 + Math.random() * 5}px`,
+            height: `${3 + Math.random() * 5}px`,
+            background: ['#c084fc', '#22d3ee', '#f472b6'][i % 3],
+            boxShadow: `0 0 8px ${['#c084fc', '#22d3ee', '#f472b6'][i % 3]}`,
+            animationDelay: `${Math.random() * 12}s`,
+            animationDuration: `${10 + Math.random() * 5}s`,
           }}
         />
       ))}
 
-      {/* 3D Loader */}
-      <div className="loader-3d-wrapper">
-        <div className="glass-backdrop" />
-        <div className="ring-outer" />
-        <div className="ring-middle" />
-        <div className="ring-inner" />
-        <div className="core-orb" />
-        <div className="center-icon">{getIcon()}</div>
+      {/* 3D Rings */}
+      <div className="loader-wrapper">
+        <div className="ring ring-1" />
+        <div className="ring ring-2" />
+        <div className="ring ring-3" />
+        <div className="icon-container">
+          <span className="center-icon">{getIcon()}</span>
+        </div>
       </div>
 
-      {/* Loading Text */}
+      {/* Text */}
       <div className="loading-text">{getMessage()}</div>
 
-      {/* Bouncing Dots */}
-      <div className="dots-container">
-        <div className="dot" />
-        <div className="dot" />
-        <div className="dot" />
+      {/* Dots */}
+      <div className="dots">
+        <div className="dot dot-1" />
+        <div className="dot dot-2" />
+        <div className="dot dot-3" />
       </div>
     </div>
   );
