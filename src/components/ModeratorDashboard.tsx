@@ -205,10 +205,31 @@ const ModeratorDashboard: React.FC = () => {
   const totalModerated = moderatedStudents.length + sentToAdminStudents.length;
 
   return (
-    <div className="flex h-screen bg-gray-100">
-      {/* Sidebar */}
-      {/* Sidebar - Modern Redesign (Purple Theme) */}
-      <div className={`${sidebarOpen ? 'w-[280px]' : 'w-20'} bg-slate-900 text-slate-100 transition-all duration-300 ease-in-out flex flex-col shadow-2xl z-50 rounded-r-3xl border-r border-slate-800 relative`}>
+    <div className="flex h-screen overflow-hidden">
+      {/* Premium Gradient Background CSS */}
+      <style>{`
+        .moderator-bg {
+          background: linear-gradient(135deg, #ede9fe 0%, #ddd6fe 25%, #c4b5fd 50%, #ede9fe 75%, #f5f3ff 100%);
+        }
+        .glassmorphism-card {
+          background: rgba(255, 255, 255, 0.7);
+          backdrop-filter: blur(20px);
+          border: 1px solid rgba(255, 255, 255, 0.8);
+        }
+        @keyframes gradient-x {
+          0%, 100% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
+        }
+        .animate-gradient-x {
+          animation: gradient-x 3s ease infinite;
+        }
+        .premium-sidebar-moderator {
+          background: linear-gradient(180deg, #0f172a 0%, #4c1d95 50%, #0f172a 100%);
+        }
+      `}</style>
+
+      {/* Sidebar - Premium Dark Purple Design */}
+      <div className={`${sidebarOpen ? 'w-[280px]' : 'w-20'} premium-sidebar-moderator text-slate-100 transition-all duration-300 ease-in-out flex flex-col shadow-2xl z-50 border-r border-purple-700/50 relative`}>
 
         {/* Top Gradient Line */}
         <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-purple-400 via-violet-500 to-fuchsia-500 bg-[length:200%_200%] animate-gradient-x"></div>
@@ -285,17 +306,17 @@ const ModeratorDashboard: React.FC = () => {
         </div>
       </div>
 
-      {/* Main Content */}
-      <div className="flex-1 overflow-auto">
-        {/* Top Bar */}
-        <div className="bg-white shadow-sm px-6 py-4 flex items-center justify-between border-b border-gray-100">
+      {/* Main Content - Premium Gradient Canvas */}
+      <div className="flex-1 overflow-auto moderator-bg">
+        {/* Top Bar - Glassmorphism */}
+        <div className="glassmorphism-card shadow-lg shadow-purple-100/50 mx-4 mt-4 rounded-2xl px-6 py-4 flex items-center justify-between border-b border-white/50">
           <div>
             <div className="flex items-center gap-2 text-sm text-gray-500 mb-1">
               <span className="hover:text-gray-700 cursor-pointer">Home</span>
               <span>/</span>
-              <span className="text-[#8e44ad] font-medium">Moderator</span>
+              <span className="text-purple-600 font-medium">Moderator</span>
             </div>
-            <h2 className="text-2xl font-bold bg-gradient-to-r from-gray-900 via-gray-800 to-gray-700 bg-clip-text text-transparent">Moderator Dashboard</h2>
+            <h2 className="text-2xl font-bold bg-gradient-to-r from-slate-800 via-purple-700 to-violet-600 bg-clip-text text-transparent">Moderator Dashboard</h2>
             <p className="text-sm text-gray-500 mt-0.5">Review individual learner submissions</p>
           </div>
           <div className="flex items-center gap-4">

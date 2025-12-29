@@ -203,10 +203,31 @@ const AssessorDashboard: React.FC = () => {
 
 
   return (
-    <div className="flex h-screen bg-gray-100">
-      {/* Sidebar */}
-      {/* Sidebar - Modern Redesign (Teal Theme) */}
-      <div className={`${sidebarOpen ? 'w-[280px]' : 'w-20'} bg-slate-900 text-slate-100 transition-all duration-300 ease-in-out flex flex-col shadow-2xl z-50 rounded-r-3xl border-r border-slate-800 relative`}>
+    <div className="flex h-screen overflow-hidden">
+      {/* Premium Gradient Background CSS */}
+      <style>{`
+        .assessor-bg {
+          background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 25%, #6ee7b7 50%, #d1fae5 75%, #ecfdf5 100%);
+        }
+        .glassmorphism-card {
+          background: rgba(255, 255, 255, 0.7);
+          backdrop-filter: blur(20px);
+          border: 1px solid rgba(255, 255, 255, 0.8);
+        }
+        @keyframes gradient-x {
+          0%, 100% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
+        }
+        .animate-gradient-x {
+          animation: gradient-x 3s ease infinite;
+        }
+        .premium-sidebar-assessor {
+          background: linear-gradient(180deg, #0f172a 0%, #134e4a 50%, #0f172a 100%);
+        }
+      `}</style>
+
+      {/* Sidebar - Premium Dark Teal Design */}
+      <div className={`${sidebarOpen ? 'w-[280px]' : 'w-20'} premium-sidebar-assessor text-slate-100 transition-all duration-300 ease-in-out flex flex-col shadow-2xl z-50 border-r border-teal-700/50 relative`}>
 
         {/* Top Gradient Line */}
         <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-teal-400 via-emerald-500 to-green-500 bg-[length:200%_200%] animate-gradient-x"></div>
@@ -283,17 +304,17 @@ const AssessorDashboard: React.FC = () => {
         </div>
       </div>
 
-      {/* Main Content */}
-      <div className="flex-1 overflow-auto">
-        {/* Top Bar */}
-        <div className="bg-white shadow-sm px-6 py-4 flex items-center justify-between border-b border-gray-100">
+      {/* Main Content - Premium Gradient Canvas */}
+      <div className="flex-1 overflow-auto assessor-bg">
+        {/* Top Bar - Glassmorphism */}
+        <div className="glassmorphism-card shadow-lg shadow-teal-100/50 mx-4 mt-4 rounded-2xl px-6 py-4 flex items-center justify-between border-b border-white/50">
           <div>
             <div className="flex items-center gap-2 text-sm text-gray-500 mb-1">
               <span className="hover:text-gray-700 cursor-pointer">Home</span>
               <span>/</span>
-              <span className="text-[#16a085] font-medium">Assessor</span>
+              <span className="text-teal-600 font-medium">Assessor</span>
             </div>
-            <h2 className="text-2xl font-bold bg-gradient-to-r from-gray-900 via-gray-800 to-gray-700 bg-clip-text text-transparent">Assessor Dashboard</h2>
+            <h2 className="text-2xl font-bold bg-gradient-to-r from-slate-800 via-teal-700 to-emerald-600 bg-clip-text text-transparent">Assessor Dashboard</h2>
             <p className="text-sm text-gray-500 mt-0.5">Review and grade trainer submissions</p>
           </div>
           <div className="flex items-center gap-4">
