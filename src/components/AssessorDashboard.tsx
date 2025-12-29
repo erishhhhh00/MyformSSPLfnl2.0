@@ -74,6 +74,7 @@ const AssessorDashboard: React.FC = () => {
 
   // Page loading state for futuristic loader
   const [isPageLoading, setIsPageLoading] = useState(true);
+  const [isLoggingOut, setIsLoggingOut] = useState(false);
 
   useEffect(() => {
     // Load UIDs and stats from server (NO localStorage)
@@ -207,9 +208,10 @@ const AssessorDashboard: React.FC = () => {
   // Use with_moderator_count from server, fallback to sum for backward compatibility
   const sentToModerator = stats.with_moderator_count || ((stats.ready_for_moderation_count || 0) + (stats.moderation_complete_count || 0) + (stats.sent_to_admin_count || 0) + (stats.approved_count || 0));
 
-  // Show futuristic loader during initial page load
-  if (isPageLoading) {
-    return <FuturisticLoader type="loading" text="Loading Assessor..." />;
+
+  // Show futuristic loader during initial page load or logout
+  if (isPageLoading || isLoggingOut) {
+    return <FuturisticLoader type={isLoggingOut ? "logout" : "loading"} text={isLoggingOut ? "Signing Out..." : "Loading Assessor..."} />;
   }
 
   return (
@@ -302,7 +304,11 @@ const AssessorDashboard: React.FC = () => {
         {/* User Profile / Logout Section */}
         <div className="p-4 border-t border-slate-800 bg-slate-900/50 mx-2 mb-2 rounded-xl">
           <button
-            onClick={async () => { await logoutUser(); navigate('/login'); }}
+            onClick={async () => {
+              setIsLoggingOut(true);
+              await logoutUser();
+              navigate('/login');
+            }}
             className={`flex items-center gap-3 w-full p-3 rounded-xl transition-all duration-200 group
               ${sidebarOpen ? 'justify-start' : 'justify-center'}
               text-slate-400 hover:text-red-400 hover:bg-red-500/10 border border-transparent hover:border-red-500/20`}

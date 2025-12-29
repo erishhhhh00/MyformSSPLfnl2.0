@@ -1,6 +1,7 @@
 import React from 'react';
 import { Navigate } from 'react-router-dom';
 import { useAuth } from '@/context/AuthContext';
+import FuturisticLoader from './FuturisticLoader';
 
 interface ProtectedRouteProps {
     children: React.ReactNode;
@@ -10,13 +11,9 @@ interface ProtectedRouteProps {
 const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children, allowedRoles }) => {
     const { user, isLoading } = useAuth();
 
-    // Show loading while checking auth
+    // Show FuturisticLoader while checking auth
     if (isLoading) {
-        return (
-            <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-50 to-blue-50">
-                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
-            </div>
-        );
+        return <FuturisticLoader type="loading" text="Authenticating..." />;
     }
 
     // Not logged in - redirect to login

@@ -133,6 +133,7 @@ const AdminDashboard: React.FC = () => {
 
   // Page loading state for futuristic loader
   const [isPageLoading, setIsPageLoading] = useState(true);
+  const [isLoggingOut, setIsLoggingOut] = useState(false);
 
   // Load UIDs from server on component mount (NO localStorage)
   useEffect(() => {
@@ -542,9 +543,9 @@ const AdminDashboard: React.FC = () => {
     );
   }
 
-  // Show futuristic loader during initial page load
-  if (isPageLoading) {
-    return <FuturisticLoader type="loading" text="Loading Dashboard..." />;
+  // Show futuristic loader during initial page load or logout
+  if (isPageLoading || isLoggingOut) {
+    return <FuturisticLoader type={isLoggingOut ? "logout" : "loading"} text={isLoggingOut ? "Signing Out..." : "Loading Dashboard..."} />;
   }
 
   return (
@@ -644,7 +645,7 @@ const AdminDashboard: React.FC = () => {
         {/* User Profile / Logout Section */}
         <div className="p-4 border-t border-slate-800 bg-slate-900/50 mx-2 mb-2 rounded-xl">
           <button
-            onClick={async () => { await logoutUser(); navigate('/login'); }}
+            onClick={async () => { setIsLoggingOut(true); await logoutUser(); navigate('/login'); }}
             className={`flex items-center gap-3 w-full p-3 rounded-xl transition-all duration-200 group
               ${sidebarOpen ? 'justify-start' : 'justify-center'}
               text-slate-400 hover:text-red-400 hover:bg-red-500/10 border border-transparent hover:border-red-500/20`}

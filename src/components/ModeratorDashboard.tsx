@@ -52,6 +52,7 @@ const ModeratorDashboard: React.FC = () => {
   const [moderatedStudents, setModeratedStudents] = useState<Student[]>([]);
   const [sentToAdminStudents, setSentToAdminStudents] = useState<Student[]>([]);
   const [loading, setLoading] = useState(true);
+  const [isLoggingOut, setIsLoggingOut] = useState(false);
   // Track which UIDs have moderation form submitted
   const [moderatedUids, setModeratedUids] = useState<Set<string>>(new Set());
 
@@ -205,9 +206,9 @@ const ModeratorDashboard: React.FC = () => {
   const totalPending = pendingStudents.length;
   const totalModerated = moderatedStudents.length + sentToAdminStudents.length;
 
-  // Show futuristic loader during initial page load
-  if (loading) {
-    return <FuturisticLoader type="loading" text="Loading Moderator..." />;
+  // Show futuristic loader during initial page load or logout
+  if (loading || isLoggingOut) {
+    return <FuturisticLoader type={isLoggingOut ? "logout" : "loading"} text={isLoggingOut ? "Signing Out..." : "Loading Moderator..."} />;
   }
 
   return (
@@ -300,7 +301,7 @@ const ModeratorDashboard: React.FC = () => {
         {/* User Profile / Logout Section */}
         <div className="p-4 border-t border-slate-800 bg-slate-900/50 mx-2 mb-2 rounded-xl">
           <button
-            onClick={async () => { await logoutUser(); navigate('/login'); }}
+            onClick={async () => { setIsLoggingOut(true); await logoutUser(); navigate('/login'); }}
             className={`flex items-center gap-3 w-full p-3 rounded-xl transition-all duration-200 group
               ${sidebarOpen ? 'justify-start' : 'justify-center'}
               text-slate-400 hover:text-red-400 hover:bg-red-500/10 border border-transparent hover:border-red-500/20`}

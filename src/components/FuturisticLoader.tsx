@@ -1,28 +1,28 @@
 import React from 'react';
 
 interface FuturisticLoaderProps {
-    text?: string;
-    type?: 'login' | 'logout' | 'loading';
+  text?: string;
+  type?: 'login' | 'logout' | 'loading';
 }
 
 const FuturisticLoader: React.FC<FuturisticLoaderProps> = ({
-    text = 'Loading...',
-    type = 'loading'
+  text = 'Loading...',
+  type = 'loading'
 }) => {
-    const getMessage = () => {
-        switch (type) {
-            case 'login':
-                return 'Signing In...';
-            case 'logout':
-                return 'Signing Out...';
-            default:
-                return text;
-        }
-    };
+  const getMessage = () => {
+    switch (type) {
+      case 'login':
+        return 'Signing In...';
+      case 'logout':
+        return 'Signing Out...';
+      default:
+        return text;
+    }
+  };
 
-    return (
-        <div className="futuristic-loader-overlay">
-            <style>{`
+  return (
+    <div className="futuristic-loader-overlay">
+      <style>{`
         .futuristic-loader-overlay {
           position: fixed;
           inset: 0;
@@ -31,8 +31,7 @@ const FuturisticLoader: React.FC<FuturisticLoaderProps> = ({
           flex-direction: column;
           align-items: center;
           justify-content: center;
-          background: radial-gradient(ellipse at center, rgba(10, 10, 30, 0.95) 0%, rgba(5, 5, 20, 0.98) 100%);
-          backdrop-filter: blur(20px);
+          background: radial-gradient(ellipse at center, #0a0a1e 0%, #050510 100%);
         }
 
         /* Floating particles */
@@ -47,7 +46,7 @@ const FuturisticLoader: React.FC<FuturisticLoaderProps> = ({
           position: absolute;
           width: 4px;
           height: 4px;
-          background: radial-gradient(circle, rgba(139, 92, 246, 0.8) 0%, transparent 70%);
+          background: radial-gradient(circle, rgba(139, 92, 246, 0.9) 0%, transparent 70%);
           border-radius: 50%;
           animation: floatParticle 8s infinite ease-in-out;
         }
@@ -74,24 +73,21 @@ const FuturisticLoader: React.FC<FuturisticLoaderProps> = ({
           position: relative;
           width: 200px;
           height: 200px;
-          perspective: 1000px;
-          transform-style: preserve-3d;
+          perspective: 800px;
         }
 
-        /* Outer Ring */
+        /* Outer Ring - CLEARER */
         .ring-outer {
           position: absolute;
           inset: 0;
           border-radius: 50%;
-          border: 3px solid transparent;
+          border: 4px solid transparent;
           border-top-color: #8b5cf6;
           border-right-color: #06b6d4;
           animation: rotateOuter 2s linear infinite;
           box-shadow: 
-            0 0 30px rgba(139, 92, 246, 0.5),
-            0 0 60px rgba(139, 92, 246, 0.3),
-            inset 0 0 30px rgba(139, 92, 246, 0.1);
-          transform-style: preserve-3d;
+            0 0 20px rgba(139, 92, 246, 0.8),
+            0 0 40px rgba(139, 92, 246, 0.4);
         }
 
         @keyframes rotateOuter {
@@ -103,20 +99,18 @@ const FuturisticLoader: React.FC<FuturisticLoaderProps> = ({
           }
         }
 
-        /* Middle Ring */
+        /* Middle Ring - CLEARER */
         .ring-middle {
           position: absolute;
           inset: 20px;
           border-radius: 50%;
-          border: 3px solid transparent;
+          border: 4px solid transparent;
           border-top-color: #06b6d4;
           border-left-color: #ec4899;
           animation: rotateMiddle 1.5s linear infinite reverse;
           box-shadow: 
-            0 0 25px rgba(6, 182, 212, 0.5),
-            0 0 50px rgba(6, 182, 212, 0.3),
-            inset 0 0 25px rgba(6, 182, 212, 0.1);
-          transform-style: preserve-3d;
+            0 0 20px rgba(6, 182, 212, 0.8),
+            0 0 40px rgba(6, 182, 212, 0.4);
         }
 
         @keyframes rotateMiddle {
@@ -128,20 +122,18 @@ const FuturisticLoader: React.FC<FuturisticLoaderProps> = ({
           }
         }
 
-        /* Inner Ring */
+        /* Inner Ring - CLEARER */
         .ring-inner {
           position: absolute;
           inset: 40px;
           border-radius: 50%;
-          border: 2px solid transparent;
+          border: 3px solid transparent;
           border-bottom-color: #ec4899;
           border-right-color: #8b5cf6;
           animation: rotateInner 1s linear infinite;
           box-shadow: 
-            0 0 20px rgba(236, 72, 153, 0.5),
-            0 0 40px rgba(236, 72, 153, 0.3),
-            inset 0 0 20px rgba(236, 72, 153, 0.1);
-          transform-style: preserve-3d;
+            0 0 20px rgba(236, 72, 153, 0.8),
+            0 0 40px rgba(236, 72, 153, 0.4);
         }
 
         @keyframes rotateInner {
@@ -271,48 +263,48 @@ const FuturisticLoader: React.FC<FuturisticLoaderProps> = ({
         }
       `}</style>
 
-            {/* Floating Particles */}
-            <div className="particles-container">
-                {[...Array(20)].map((_, i) => (
-                    <div
-                        key={i}
-                        className="particle"
-                        style={{
-                            left: `${Math.random() * 100}%`,
-                            animationDelay: `${Math.random() * 8}s`,
-                            animationDuration: `${6 + Math.random() * 4}s`,
-                            width: `${2 + Math.random() * 4}px`,
-                            height: `${2 + Math.random() * 4}px`,
-                        }}
-                    />
-                ))}
-            </div>
+      {/* Floating Particles */}
+      <div className="particles-container">
+        {[...Array(20)].map((_, i) => (
+          <div
+            key={i}
+            className="particle"
+            style={{
+              left: `${Math.random() * 100}%`,
+              animationDelay: `${Math.random() * 8}s`,
+              animationDuration: `${6 + Math.random() * 4}s`,
+              width: `${2 + Math.random() * 4}px`,
+              height: `${2 + Math.random() * 4}px`,
+            }}
+          />
+        ))}
+      </div>
 
-            {/* Glass Backdrop */}
-            <div className="glass-backdrop"></div>
+      {/* Glass Backdrop */}
+      <div className="glass-backdrop"></div>
 
-            {/* 3D Loader */}
-            <div className="loader-3d-container">
-                <div className="ring-outer"></div>
-                <div className="ring-middle"></div>
-                <div className="ring-inner"></div>
-                <div className="core-glow"></div>
-                <div className="center-icon">
-                    {type === 'login' ? '🔐' : type === 'logout' ? '👋' : '⚡'}
-                </div>
-            </div>
-
-            {/* Loading Text */}
-            <div className="loading-text">{getMessage()}</div>
-
-            {/* Bouncing Dots */}
-            <div className="loading-dots">
-                <div className="dot"></div>
-                <div className="dot"></div>
-                <div className="dot"></div>
-            </div>
+      {/* 3D Loader */}
+      <div className="loader-3d-container">
+        <div className="ring-outer"></div>
+        <div className="ring-middle"></div>
+        <div className="ring-inner"></div>
+        <div className="core-glow"></div>
+        <div className="center-icon">
+          {type === 'login' ? '🔐' : type === 'logout' ? '👋' : '⚡'}
         </div>
-    );
+      </div>
+
+      {/* Loading Text */}
+      <div className="loading-text">{getMessage()}</div>
+
+      {/* Bouncing Dots */}
+      <div className="loading-dots">
+        <div className="dot"></div>
+        <div className="dot"></div>
+        <div className="dot"></div>
+      </div>
+    </div>
+  );
 };
 
 export default FuturisticLoader;
