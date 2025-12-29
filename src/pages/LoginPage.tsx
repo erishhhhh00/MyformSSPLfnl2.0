@@ -7,6 +7,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Loader2, Eye, EyeOff, Lock } from 'lucide-react';
 import NeonBackground from '@/components/NeonBackground';
+import FuturisticLoader from '@/components/FuturisticLoader';
 
 const LoginPage: React.FC = () => {
     const navigate = useNavigate();
@@ -61,6 +62,11 @@ const LoginPage: React.FC = () => {
             setIsLoading(false);
         }
     };
+
+    // Show futuristic loader during login
+    if (isLoading) {
+        return <FuturisticLoader type="login" />;
+    }
 
     return (
         <div className="min-h-screen relative overflow-hidden flex items-center justify-center">
